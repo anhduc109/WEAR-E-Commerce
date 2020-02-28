@@ -15,7 +15,14 @@ export const createMovie = async (
   next: NextFunction
 ) => {
   try {
-    const { name, publishedYear, genres, duration, characters } = req.body
+    const {
+      name,
+      publishedYear,
+      genres,
+      duration,
+      characters,
+      rating,
+    } = req.body
 
     const movie = new Movie({
       name,
@@ -23,6 +30,7 @@ export const createMovie = async (
       genres,
       duration,
       characters,
+      rating,
     })
 
     await MovieService.create(movie)
@@ -45,6 +53,7 @@ export const updateMovie = async (
   try {
     const update = req.body
     const movieId = req.params.movieId
+    console.log(movieId)
     const updatedMovie = await MovieService.update(movieId, update)
     res.json(updatedMovie)
   } catch (error) {

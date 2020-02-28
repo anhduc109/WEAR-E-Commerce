@@ -13,6 +13,7 @@ import bluebird from 'bluebird'
 import { MONGODB_URI, SESSION_SECRET } from './util/secrets'
 
 import movieRouter from './routers/movie'
+import productRouter from './routers/product'
 
 import apiErrorHandler from './middlewares/apiErrorHandler'
 import apiContentType from './middlewares/apiContentType'
@@ -29,6 +30,7 @@ mongoose
   })
   .then(() => {
     /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
+    console.log("It's fine")
   })
   .catch((err: Error) => {
     console.log(
@@ -49,6 +51,9 @@ app.use(lusca.xssProtection(true))
 
 // Use movie router
 app.use('/api/v1/movies', movieRouter)
+
+// User product router
+app.use('/api/v1/products', productRouter)
 
 // Custom API error handler
 app.use(apiErrorHandler)
