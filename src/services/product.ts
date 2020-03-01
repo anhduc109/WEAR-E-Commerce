@@ -1,4 +1,5 @@
 import Product, { ProductDocument } from '../models/Product'
+import { ProductQueryString } from '../types/types'
 
 function create(product: ProductDocument): Promise<ProductDocument> {
   return product.save()
@@ -16,13 +17,14 @@ function findById(productId: string): Promise<ProductDocument> {
 }
 
 function findAll(query: any): Promise<ProductDocument[]> {
-  console.log(query)
-  return Product.find({
+  let findObject: any = {
     name: new RegExp(query.name, 'i'),
     // Should be a dropdown categories in the UI
-    categories: new RegExp(query.category),
+    // This $all can catch all of the categories insde query.category array
     variants: new RegExp(query.variant, 'i'),
-  })
+  }
+  if (query.category) findObject.categories = { $all: query.category }
+  return Product.find(findObject)
     .sort({ name: 1, price: -1 })
     .limit(parseInt(query.limit))
     .exec() // Return a Promise

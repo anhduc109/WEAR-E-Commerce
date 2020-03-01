@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import url from 'url'
 
 import Product, { ProductDocument } from '../models/Product'
+import { ProductQueryString } from '../types/types'
 import ProductService from '../services/product'
 import {
   NotFoundError,
@@ -98,7 +99,6 @@ export const findAll = async (
 ) => {
   try {
     const query = url.parse(req.url, true).query
-    console.log(query)
     res.json(await ProductService.findAll(query))
   } catch (error) {
     next(new NotFoundError('Product not found', error))
