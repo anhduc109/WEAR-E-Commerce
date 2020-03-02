@@ -10,7 +10,7 @@ export default function(
   next: NextFunction
 ) {
   if (error.source) {
-    logger.error(error.source.toString())
+    logger.error(error.source)
   }
 
   res.status(error.statusCode).json({
