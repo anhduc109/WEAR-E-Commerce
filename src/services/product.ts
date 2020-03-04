@@ -1,5 +1,5 @@
 import Product, { ProductDocument } from '../models/Product'
-import { ProductQueryString } from '../types/types'
+import User, { UserDocument } from '../models/User'
 
 function create(product: ProductDocument): Promise<ProductDocument> {
   return product.save()
