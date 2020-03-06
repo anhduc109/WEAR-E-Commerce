@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import compression from 'compression'
 import session from 'express-session'
 import bodyParser from 'body-parser'
@@ -18,6 +19,9 @@ import userRouter from './routers/user'
 
 import apiErrorHandler from './middlewares/apiErrorHandler'
 import apiContentType from './middlewares/apiContentType'
+import unless from './util/unless'
+
+import './config/passport'
 
 const app = express()
 const mongoUrl = MONGODB_URI
@@ -31,7 +35,7 @@ mongoose
   })
   .then(() => {
     /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
-    console.log("It's fine")
+    console.log("It's finee")
   })
   .catch((err: Error) => {
     console.log(
@@ -49,6 +53,18 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(lusca.xframe('SAMEORIGIN'))
 app.use(lusca.xssProtection(true))
+
+app.use(cors())
+// Passport init
+app.use(passport.initialize())
+app.use(passport.session())
+
+// // Secured every API endpoints with authJWT
+// app.use(
+//   '/api',
+//   apiContentType,
+//   unless(/v1\/users\/(google\-)?authenticate/, authJwt)
+// )
 
 // Use movie router
 app.use('/api/v1/movies', movieRouter)

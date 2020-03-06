@@ -13,9 +13,11 @@ export default function(
     logger.error(error.source.toString())
   }
 
-  res.status(error.statusCode).json({
+  const statusCode = error.statusCode || 500
+
+  res.status(statusCode).json({
     status: 'error',
-    statusCode: error.statusCode,
+    statusCode: statusCode,
     message: error.message,
   })
 }

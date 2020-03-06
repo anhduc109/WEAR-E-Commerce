@@ -2,6 +2,7 @@ import User, { UserDocument } from '../models/User'
 import mongoose from 'mongoose'
 
 function create(user: UserDocument): Promise<UserDocument> {
+  // Check for existing user
   return user.save()
 }
 
@@ -63,8 +64,10 @@ function decreaseQuantityOfProduct(
         item => item.product.toHexString() == productId
       )
       if (existedProduct) {
-        // Decrease the quantity by one
-        existedProduct.quantity--
+        // Prevent user from decreasing the quantity if it is one
+        if (existedProduct.quantity < 1)
+          // Decrease the quantity by one
+          existedProduct.quantity--
       } else {
         throw new Error(`Product ${productId} not found`)
       }

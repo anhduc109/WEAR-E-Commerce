@@ -3,9 +3,13 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
+import { GoogleLogin } from 'react-google-login'
+import axios from 'axios'
+
+const clientId =
+  '111698224932-mv4o2t3q3ctr4hr0atpta4no96avbf2p.apps.googleusercontent.com'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,6 +28,14 @@ const useStyles = makeStyles((theme: Theme) =>
 const NavBar = () => {
   const classes = useStyles()
 
+  const responseGoogle = async (response: any) => {
+    let res = await axios.post(
+      'http://localhost:3000/api/v1/users/google-authenticate',
+      { id_token: response.tokenObj.id_token }
+    )
+    console.log(res.data)
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -39,7 +51,13 @@ const NavBar = () => {
           <Typography variant="h6" className={classes.title}>
             Shoppie
           </Typography>
-          <Button color="inherit">Login</Button>
+          <GoogleLogin
+            clientId={clientId}
+            buttonText="Login with Google"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+          />
         </Toolbar>
       </AppBar>
     </div>

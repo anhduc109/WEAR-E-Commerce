@@ -1,13 +1,14 @@
 import { Request, Response, NextFunction } from 'express'
+import jwt from 'jsonwebtoken'
 
 import User, { UserDocument } from '../models/User'
 import UserService from '../services/user'
+import { JWT_SECRET } from '../util/secrets'
 import {
   NotFoundError,
   BadRequestError,
   InternalServerError,
 } from '../helpers/apiError'
-import { cat } from 'shelljs'
 
 // POST /users
 export const createUser = async (
@@ -101,5 +102,31 @@ export const removeProductInCart = async (
     res.json(updatedUser.cart)
   } catch (error) {
     next(new NotFoundError('Product not found', error))
+  }
+}
+
+// POST /users/google-authenticate
+export const authenticate = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { email, isAdmin, id, username } = req.user as any
+    const token = await jwt.sign(
+      {
+        username,
+        email,
+        isAdmin,
+        id,
+      },
+      JWT_SECRET,
+      {
+        expiresIn: '1h',
+      }
+    )
+    res.json({ token, isAdmin, id })
+  } catch (error) {
+    return next(new InternalServerError())
   }
 }
