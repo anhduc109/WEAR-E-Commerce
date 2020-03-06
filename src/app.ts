@@ -20,6 +20,7 @@ import userRouter from './routers/user'
 import apiErrorHandler from './middlewares/apiErrorHandler'
 import apiContentType from './middlewares/apiContentType'
 import unless from './util/unless'
+import authJWT from './middlewares/authJWT'
 
 import './config/passport'
 
@@ -60,11 +61,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // // Secured every API endpoints with authJWT
-// app.use(
-//   '/api',
-//   apiContentType,
-//   unless(/v1\/users\/(google\-)?authenticate/, authJwt)
-// )
+app.use(
+  '/api',
+  apiContentType,
+  unless(/v1\/users\/(google\-)?authenticate/, authJWT)
+)
 
 // Use movie router
 app.use('/api/v1/movies', movieRouter)
