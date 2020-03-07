@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Response, Request } from 'express'
 import passport from 'passport'
 
 import {
@@ -13,6 +13,10 @@ const router = express.Router()
 
 // Every path we define here will get /api/v1/users prefix
 router.post('/', createUser)
+
+router.get('/auth', (req: Request, res: Response) => {
+  res.send(req.user)
+})
 
 router.get('/cart', getCart)
 router.put('/cart', manageProductInCart)

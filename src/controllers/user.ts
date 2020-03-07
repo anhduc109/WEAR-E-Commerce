@@ -125,7 +125,7 @@ export const authenticate = async (
         expiresIn: '1h',
       }
     )
-    res.json({ token, isAdmin, id })
+    res.json({ token, user: req.user })
   } catch (error) {
     return next(new InternalServerError())
   }
