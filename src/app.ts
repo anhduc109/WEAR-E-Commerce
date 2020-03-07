@@ -1,22 +1,21 @@
 import express from 'express'
 import cors from 'cors'
 import compression from 'compression'
-import session from 'express-session'
 import bodyParser from 'body-parser'
 import lusca from 'lusca'
-import mongo from 'connect-mongo'
-import flash from 'express-flash'
-import path from 'path'
 import mongoose from 'mongoose'
 import passport from 'passport'
 import bluebird from 'bluebird'
 
-import { MONGODB_URI, SESSION_SECRET } from './util/secrets'
+// Secrets
+import { MONGODB_URI } from './util/secrets'
 
+// Routes
 import movieRouter from './routers/movie'
 import productRouter from './routers/product'
 import userRouter from './routers/user'
 
+// Middlewares
 import apiErrorHandler from './middlewares/apiErrorHandler'
 import apiContentType from './middlewares/apiContentType'
 import unless from './util/unless'
@@ -36,7 +35,7 @@ mongoose
   })
   .then(() => {
     /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
-    console.log("It's finee")
+    console.log('Its finee')
   })
   .catch((err: Error) => {
     console.log(
@@ -55,12 +54,14 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(lusca.xframe('SAMEORIGIN'))
 app.use(lusca.xssProtection(true))
 
+// Cross origin enabled
 app.use(cors())
+
 // Passport init
 app.use(passport.initialize())
 app.use(passport.session())
 
-// // Secured every API endpoints with authJWT
+// Secured every API endpoints with authJWT
 app.use(
   '/api',
   apiContentType,

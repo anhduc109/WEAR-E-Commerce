@@ -8,7 +8,7 @@ import User from '../models/User'
 // const LocalStrategy = passportLocal.Strategy
 // const FacebookStrategy = passportFacebook.Strategy
 
-var GoogleTokenStrategy = require('passport-google-id-token')
+const GoogleTokenStrategy = require('passport-google-id-token')
 
 const GOOGLE_CLIENT_ID =
   '111698224932-mv4o2t3q3ctr4hr0atpta4no96avbf2p.apps.googleusercontent.com'
@@ -29,13 +29,15 @@ passport.use(
     },
     async function(parsedToken: any, googleId: string, done: Function) {
       const { payload } = parsedToken
+      console.log(payload)
+
       try {
-        let user = await User.findOne({ email: payload.email }).exec()
+        const user = await User.findOne({ email: payload.email }).exec()
         if (user) {
           return done(null, user)
         }
 
-        let newUser = await User.create({
+        const newUser = await User.create({
           email: payload.email,
           isAdmin: payload.email === 'ducpham1098@gmail.com',
           username: payload.name,

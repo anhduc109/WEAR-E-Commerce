@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express'
+import { Request, Response } from 'express'
 
 import ApiError from '../helpers/apiError'
 import logger from '../util/logger'
@@ -7,11 +7,13 @@ export default function(
   error: ApiError,
   req: Request,
   res: Response,
-  next: NextFunction
+  next: any
 ) {
   if (error.source) {
-    logger.error(error.source.toString())
+    logger.error(error.source)
   }
+
+  console.log('this is response', res)
 
   const statusCode = error.statusCode || 500
 

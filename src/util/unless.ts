@@ -1,9 +1,4 @@
-import express, {
-  RequestHandler,
-  Request,
-  Response,
-  NextFunction,
-} from 'express'
+import { RequestHandler, Request, Response, NextFunction } from 'express'
 import { pathToRegexp, Path } from 'path-to-regexp'
 const unless = (paths: Path, middleware: RequestHandler): RequestHandler => {
   const regex = pathToRegexp(paths)

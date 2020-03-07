@@ -29,7 +29,7 @@ function addProductToCart(
         throw new Error(`User ${userId} not found`)
       }
       // Check if exist
-      let existedProduct = user.cart.find(
+      const existedProduct = user.cart.find(
         item => item.product.toHexString() == productId
       )
       if (existedProduct) {
@@ -60,7 +60,7 @@ function decreaseQuantityOfProduct(
         throw new Error(`User ${userId} not found`)
       }
       //Check if exist
-      let existedProduct = user.cart.find(
+      const existedProduct = user.cart.find(
         item => item.product.toHexString() == productId
       )
       if (existedProduct) {
@@ -89,7 +89,7 @@ function removeProductInCart(
         throw new Error(`User ${userId} not found`)
       }
       // Check if exist
-      let existedIndex = user.cart.findIndex(
+      const existedIndex = user.cart.findIndex(
         item => item.product.toHexString() == productId
       )
       if (existedIndex !== -1) {

@@ -12,8 +12,10 @@ export default async function authJWT(
   next: NextFunction
 ) {
   try {
+    console.log('come here')
     const token = req.headers['authorization'] || ''
     const decoded = jwt.verify(token, JWT_SECRET) as any
+    console.log('after decoded')
     const user = await User.findOne({ email: decoded.email }).exec()
     req.user = user as any
     next()

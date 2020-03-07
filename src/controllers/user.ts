@@ -69,13 +69,13 @@ export const manageProductInCart = async (
     const productId = req.body.productId
     const isIncreased = req.body.isIncreased
     if (isIncreased) {
-      let updatedUser: UserDocument = await UserService.addProductToCart(
+      const updatedUser: UserDocument = await UserService.addProductToCart(
         productId,
         userId
       )
       res.json(updatedUser.cart)
     } else {
-      let updatedUser: UserDocument = await UserService.decreaseQuantityOfProduct(
+      const updatedUser: UserDocument = await UserService.decreaseQuantityOfProduct(
         productId,
         userId
       )
@@ -95,7 +95,7 @@ export const removeProductInCart = async (
   try {
     const userId = req.body.userId
     const productId = req.body.productId
-    let updatedUser: UserDocument = await UserService.removeProductInCart(
+    const updatedUser: UserDocument = await UserService.removeProductInCart(
       productId,
       userId
     )
