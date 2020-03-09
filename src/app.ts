@@ -11,7 +11,6 @@ import bluebird from 'bluebird'
 import { MONGODB_URI } from './util/secrets'
 
 // Routes
-import movieRouter from './routers/movie'
 import productRouter from './routers/product'
 import userRouter from './routers/user'
 
@@ -67,9 +66,6 @@ app.use(
   apiContentType,
   unless(/v1\/users\/(google\-)?authenticate/, authJWT)
 )
-
-// Use movie router
-app.use('/api/v1/movies', movieRouter)
 
 // Use product router
 app.use('/api/v1/products', productRouter)

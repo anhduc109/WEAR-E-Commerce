@@ -13,8 +13,6 @@ export default function(
     logger.error(error.source)
   }
 
-  console.log('this is response', res)
-
   const statusCode = error.statusCode || 500
 
   res.status(statusCode).json({

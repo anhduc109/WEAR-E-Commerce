@@ -1,7 +1,7 @@
 const formUtils = {
   submitForm: function(formData: object) {
-    console.log(formData)
-  }
+    return formData
+  },
 }
 
 function productEditView(name: string, price: number, color: 'red' | 'blue') {
@@ -32,11 +32,13 @@ describe('product form submission', () => {
   it('should submit form successfully', () => {
     productEditView('Galaxy s10', 1000, 'blue')
 
-    expect(spy).toBeCalledWith(expect.objectContaining({
-      name: 'Galaxy s10',
-      price: 1000,
-      color: 'blue',
-    }))
+    expect(spy).toBeCalledWith(
+      expect.objectContaining({
+        name: 'Galaxy s10',
+        price: 1000,
+        color: 'blue',
+      })
+    )
   })
 
   it('should not submit form with invalid price', () => {

@@ -65,7 +65,7 @@ function decreaseQuantityOfProduct(
       )
       if (existedProduct) {
         // Prevent user from decreasing the quantity if it is one
-        if (existedProduct.quantity < 1)
+        if (existedProduct.quantity > 1)
           // Decrease the quantity by one
           existedProduct.quantity--
       } else {

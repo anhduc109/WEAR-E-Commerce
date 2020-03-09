@@ -1,5 +1,4 @@
 import Product, { ProductDocument } from '../models/Product'
-import User, { UserDocument } from '../models/User'
 
 function create(product: ProductDocument): Promise<ProductDocument> {
   return product.save()
@@ -17,7 +16,7 @@ function findById(productId: string): Promise<ProductDocument> {
 }
 
 function findAll(query: any): Promise<ProductDocument[]> {
-  let findObject: any = {
+  const findObject: any = {
     name: new RegExp(query.name, 'i'),
     // Should be a dropdown categories in the UI
     // This $all can catch all of the categories insde query.category array
@@ -43,6 +42,10 @@ function update(
 
       if (update.name) {
         product.name = update.name
+      }
+
+      if (update.price) {
+        product.price = update.price
       }
 
       if (update.img) {
