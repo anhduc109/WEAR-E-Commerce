@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken'
 import './App.css'
 import NavBar from './components/NavBar'
 import { addJWTToken, loadUser, fetchCart } from './redux/actions'
+import { User } from './types'
 
 function App() {
   const existingToken = JSON.parse(localStorage.getItem('token') || 'null')

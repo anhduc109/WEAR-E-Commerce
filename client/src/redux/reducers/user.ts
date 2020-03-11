@@ -27,8 +27,8 @@ export default function user(
       return { ...state, user, userLoaded }
     }
     case LOG_OUT: {
-      const { user, userLoaded, token } = action.payload
-      return { ...state, user, userLoaded, token }
+      const { user, userLoaded, token, cart } = action.payload
+      return { ...state, user, userLoaded, token, cart }
     }
 
     case GET_CART: {

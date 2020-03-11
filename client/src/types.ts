@@ -30,6 +30,18 @@ export type Product = {
   price: number
 }
 
+// An user
+export type User = {
+  username: string
+  email: string
+  isAdmin: boolean
+  id: string
+  iat: number
+  exp: number
+}
+
+// Product actions
+
 export type AddProductAction = {
   type: typeof ADD_PRODUCT
   payload: {
@@ -88,6 +100,7 @@ export type LogOutAction = {
     token: string | null
     user: any
     userLoaded: Boolean
+    cart: Product[]
   }
 }
 
@@ -106,12 +119,12 @@ export type UserActions =
   | GetCartAction
 
 export type ProductState = {
-  products: any
+  products: Product[]
 }
 
 export type UserState = {
   token: string | null
-  user: any
+  user: User | null
   userLoaded: Boolean
   cart: Product[]
 }

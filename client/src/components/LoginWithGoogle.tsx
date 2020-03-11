@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import jwt from 'jsonwebtoken'
 
-import { addJWTToken, loadUser } from '../redux/actions'
+import { addJWTToken, loadUser, fetchCart } from '../redux/actions'
 
 const clientId =
   '111698224932-mv4o2t3q3ctr4hr0atpta4no96avbf2p.apps.googleusercontent.com'
@@ -18,7 +18,9 @@ const LoginWithGoogle = () => {
       { id_token: response.tokenObj.id_token }
     )
     dispatch(addJWTToken(res.data.token))
-    dispatch(loadUser(jwt.decode(res.data.token)))
+    const decodedToken: any = jwt.decode(res.data.token)
+    dispatch(loadUser(decodedToken))
+    dispatch(fetchCart(res.data.token, decodedToken.id))
   }
 
   return (

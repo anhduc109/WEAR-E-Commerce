@@ -14,7 +14,7 @@ import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined'
 
 import LoginWithGoogle from './LoginWithGoogle'
 import { logOut } from '../redux/actions/user'
-import { AppState } from '../types'
+import { AppState, Product } from '../types'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -37,13 +37,22 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const NavBar = () => {
   const classes = useStyles()
-
   const dispatch = useDispatch()
 
   // const existingToken = JSON.parse(localStorage.getItem('token') || 'null')
   // const user: any = jwt.decode(existingToken)
 
   const user = useSelector((state: AppState) => state.user.user)
+  const cart = useSelector((state: AppState) => state.user.cart)
+
+  const countQuantity = (cart: any) => {
+    let count = 0
+    cart.map((product: any) => {
+      count += product.quantity
+    })
+    return count
+  }
+  const quantityInCart = countQuantity(cart)
 
   const handleLogOut = () => {
     dispatch(logOut())
@@ -68,7 +77,7 @@ const NavBar = () => {
             <>
               <Typography variant="h6">Hi, {user.username}</Typography>
               <IconButton className={classes.marginButton}>
-                <Badge badgeContent={3}>
+                <Badge badgeContent={quantityInCart}>
                   <LocalMallOutlinedIcon />
                 </Badge>
               </IconButton>

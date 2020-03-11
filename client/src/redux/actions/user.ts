@@ -10,6 +10,7 @@ import {
   GET_CART,
   Product,
   GetCartAction,
+  User,
 } from '../../types'
 
 export function addJWTToken(token: string): ADDJWTTokenAction {
@@ -52,7 +53,7 @@ export function loadUser(decodedToken: any) {
 //   })
 //   }
 
-export function loadUserSuccess(user: any) {
+export function loadUserSuccess(user: User) {
   return {
     type: LOAD_USER_SUCCESS,
     payload: {
@@ -69,6 +70,7 @@ export function logOut(): LogOutAction {
       user: null,
       userLoaded: false,
       token: null,
+      cart: [],
     },
   }
 }
@@ -79,7 +81,7 @@ export function fetchCart(token: string, userId: string) {
       Authorization: `Bearer ${token}`,
     },
   }
-  return (dispatch: Dispatch) => {
+  return (dispatch: Dispatch<GetCartAction>) => {
     return axios
       .post('http://localhost:3000/api/v1/users/cart', { userId }, config)
       .then(res => {
