@@ -120,15 +120,17 @@ describe('product controller', () => {
   })
 
   it('should delete an existing product', async () => {
-    let res = await createProduct()
-    expect(res.status).toBe(200)
-    const productId = res.body._id
+    // let res = await createProduct()
+    // expect(res.status).toBe(200)
+    // const productId = res.body._id
 
-    res = await request(app).delete(`/api/v1/products/${productId}`)
+    let res = await request(app).delete(
+      '/api/v1/products/5e66645d4b4d272b6c6aab7'
+    )
 
     expect(res.status).toEqual(204)
 
-    res = await request(app).get(`/api/v1/products/${productId}`)
+    res = await request(app).get('/api/v1/products/5e66645d4b4d272b6c6aab7')
     expect(res.status).toBe(404)
   })
 })

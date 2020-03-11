@@ -8,10 +8,12 @@ import rootSaga from './sagas'
 
 const initState: AppState = {
   user: {
-    token: null,
+    token: '',
     user: null,
+    userLoaded: false,
   },
   product: {
+    products: [],
     inCart: [],
   },
   ui: {

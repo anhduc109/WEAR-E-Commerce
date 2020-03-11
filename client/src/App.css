@@ -1,0 +1,27 @@
+body {
+  background-color: white !important;
+}
+
+.page-wrapper {
+  padding: 80px 20px;
+}
+
+.product-detail-wrapper {
+  padding: 80px 0;
+}
+
+.product-name {
+  overflow: hidden; /* make sure it hides the content that overflows */
+  white-space: nowrap; /* don't break the line */
+  text-overflow: ellipsis; /* give the beautiful '...' effect */
+}
+
+.product-name:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.responsive-img {
+  height: auto;
+  width: 100%;
+}

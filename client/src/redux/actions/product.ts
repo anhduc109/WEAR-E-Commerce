@@ -1,9 +1,12 @@
 import { Dispatch } from 'redux'
+import axios from 'axios'
 
 import {
   ADD_PRODUCT,
   REMOVE_PRODUCT,
+  GET_ALL_PRODUCTS,
   ProductActions,
+  GetAllProductsAction,
   Product,
 } from '../../types'
 
@@ -21,6 +24,30 @@ export function removeProduct(product: Product): ProductActions {
     type: REMOVE_PRODUCT,
     payload: {
       product,
+    },
+  }
+}
+
+export function fetchAllProduct(token: string | null) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+  return (dispatch: Dispatch) => {
+    return axios
+      .get('http://localhost:3000/api/v1/products', config)
+      .then(res => {
+        dispatch(getAllProducts(res.data))
+      })
+  }
+}
+
+export function getAllProducts(products: Product) {
+  return {
+    type: GET_ALL_PRODUCTS,
+    payload: {
+      products,
     },
   }
 }

@@ -12,8 +12,9 @@ const store = makeStore()
 
 const theme = createMuiTheme({
   palette: {
+    // background: '#FFFFFF',
     primary: {
-      main: '#546e7a',
+      main: '#FFFFFF',
     },
     type: 'light',
   },

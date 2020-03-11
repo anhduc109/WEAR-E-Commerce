@@ -1,7 +1,13 @@
 import React from 'react'
 
+import ProductsList from '../components/ProductsList'
+
 function Home() {
-  return <h1>This is Homepage</h1>
+  return (
+    <div className="page-wrapper">
+      <ProductsList />
+    </div>
+  )
 }
 
 export default Home

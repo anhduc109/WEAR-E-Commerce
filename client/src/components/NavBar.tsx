@@ -1,24 +1,26 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Button,
+} from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
-import { GoogleLogin } from 'react-google-login'
 import { useDispatch, useSelector } from 'react-redux'
-import axios from 'axios'
+import jwt from 'jsonwebtoken'
 
-import { addJWTToken, loadUser } from '../redux/actions'
+import LoginWithGoogle from './LoginWithGoogle'
+import { logOut } from '../redux/actions/user'
 import { AppState } from '../types'
-
-const clientId =
-  '111698224932-mv4o2t3q3ctr4hr0atpta4no96avbf2p.apps.googleusercontent.com'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+      background: 'transparent',
+      boxShadow: 'none',
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -34,27 +36,18 @@ const NavBar = () => {
 
   const dispatch = useDispatch()
 
+  // const existingToken = JSON.parse(localStorage.getItem('token') || 'null')
+  // const user: any = jwt.decode(existingToken)
+
   const user = useSelector((state: AppState) => state.user.user)
 
-  useEffect(() => {
-    const existingToken = JSON.parse(localStorage.getItem('token') || 'null')
-    if (existingToken) {
-      dispatch(addJWTToken(existingToken))
-    }
-    dispatch(loadUser(existingToken))
-  }, [])
-
-  const responseGoogle = async (response: any) => {
-    let res = await axios.post(
-      'http://localhost:3000/api/v1/users/google-authenticate',
-      { id_token: response.tokenObj.id_token }
-    )
-    dispatch(addJWTToken(res.data.token))
+  const handleLogOut = () => {
+    dispatch(logOut())
   }
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed" className={classes.root}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -67,17 +60,20 @@ const NavBar = () => {
           <Typography variant="h6" className={classes.title}>
             Shoppie
           </Typography>
-          {/* {user ? (
-            <h1>Hello, {user.username}</h1>
+          {user ? (
+            <>
+              <h1>{`Hello ${user.username}`}</h1>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleLogOut}
+              >
+                Log out
+              </Button>
+            </>
           ) : (
-            <GoogleLogin
-              clientId={clientId}
-              buttonText="Login with Google"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={'single_host_origin'}
-            />
-          )} */}
+            <LoginWithGoogle />
+          )}
         </Toolbar>
       </AppBar>
     </div>

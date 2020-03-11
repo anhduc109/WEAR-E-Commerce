@@ -61,11 +61,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // Secured every API endpoints with authJWT
-app.use(
-  '/api',
-  apiContentType,
-  unless(/v1\/users\/(google\-)?authenticate/, authJWT)
-)
+const excludedPaths = [/v1\/users\/(google\-)?authenticate/, /v1\/products/]
+app.use('/api', apiContentType, unless(excludedPaths, authJWT))
 
 // Use product router
 app.use('/api/v1/products', productRouter)
