@@ -11,10 +11,10 @@ const initState: AppState = {
     token: '',
     user: null,
     userLoaded: false,
+    cart: [],
   },
   product: {
     products: [],
-    inCart: [],
   },
   ui: {
     dialogOpen: {},

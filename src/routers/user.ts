@@ -18,7 +18,7 @@ router.get('/auth', (req: Request, res: Response) => {
   res.send(req.user)
 })
 
-router.get('/cart', getCart)
+router.post('/cart', getCart)
 router.put('/cart', manageProductInCart)
 router.delete('/cart', removeProductInCart)
 

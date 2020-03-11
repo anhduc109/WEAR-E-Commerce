@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 
 import './App.css'
 import NavBar from './components/NavBar'
-import { addJWTToken, loadUser } from './redux/actions'
+import { addJWTToken, loadUser, fetchCart } from './redux/actions'
 
 function App() {
   const existingToken = JSON.parse(localStorage.getItem('token') || 'null')
@@ -22,6 +22,7 @@ function App() {
         //this condition will be true unless the token expires
         dispatch(addJWTToken(existingToken))
         dispatch(loadUser(decodedExistingToken))
+        dispatch(fetchCart(existingToken, decodedExistingToken.id))
       }
     }
   }, [existingToken, dispatch])

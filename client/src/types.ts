@@ -5,6 +5,7 @@ export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
 
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCT'
+export const GET_CART = 'GET_CART'
 
 // User
 export const ADD_JWT_TOKEN = 'ADD_JWT_TOKEN'
@@ -21,6 +22,7 @@ export enum DialogType {
 export type Product = {
   _id: string
   name: string
+  description: string
   categories: string[]
   variants: string[]
   sizes: string[]
@@ -53,6 +55,15 @@ export type GetAllProductsAction = {
   type: typeof GET_ALL_PRODUCTS
   payload: {
     products: any
+  }
+}
+
+// User Actions
+
+export type GetCartAction = {
+  type: typeof GET_CART
+  payload: {
+    cart: Product[]
   }
 }
 
@@ -92,16 +103,17 @@ export type UserActions =
   | ADDJWTTokenAction
   | LoadUserSuccessAction
   | LogOutAction
+  | GetCartAction
 
 export type ProductState = {
   products: any
-  inCart: Product[]
 }
 
 export type UserState = {
   token: string | null
   user: any
   userLoaded: Boolean
+  cart: Product[]
 }
 
 // Using dynamic keys from an enum

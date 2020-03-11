@@ -5,9 +5,11 @@ import {
   ADD_JWT_TOKEN,
   ADDJWTTokenAction,
   LOAD_USER_SUCCESS,
-  LoadUserSuccessAction,
   LOG_OUT,
   LogOutAction,
+  GET_CART,
+  Product,
+  GetCartAction,
 } from '../../types'
 
 export function addJWTToken(token: string): ADDJWTTokenAction {
@@ -67,6 +69,30 @@ export function logOut(): LogOutAction {
       user: null,
       userLoaded: false,
       token: null,
+    },
+  }
+}
+
+export function fetchCart(token: string, userId: string) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+  return (dispatch: Dispatch) => {
+    return axios
+      .post('http://localhost:3000/api/v1/users/cart', { userId }, config)
+      .then(res => {
+        dispatch(getCart(res.data))
+      })
+  }
+}
+
+export function getCart(cart: Product[]): GetCartAction {
+  return {
+    type: GET_CART,
+    payload: {
+      cart,
     },
   }
 }

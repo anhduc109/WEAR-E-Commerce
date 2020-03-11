@@ -6,10 +6,11 @@ import {
   Typography,
   IconButton,
   Button,
+  Badge,
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { useDispatch, useSelector } from 'react-redux'
-import jwt from 'jsonwebtoken'
+import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined'
 
 import LoginWithGoogle from './LoginWithGoogle'
 import { logOut } from '../redux/actions/user'
@@ -24,6 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRight: theme.spacing(2),
+    },
+    marginButton: {
+      marginLeft: 10,
     },
     title: {
       flexGrow: 1,
@@ -57,15 +61,20 @@ const NavBar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Shoppie
+          <Typography variant="h4" className={classes.title}>
+            No Name
           </Typography>
           {user ? (
             <>
-              <h1>{`Hello ${user.username}`}</h1>
+              <Typography variant="h6">Hi, {user.username}</Typography>
+              <IconButton className={classes.marginButton}>
+                <Badge badgeContent={3}>
+                  <LocalMallOutlinedIcon />
+                </Badge>
+              </IconButton>
               <Button
-                variant="contained"
-                color="primary"
+                className={classes.marginButton}
+                variant="outlined"
                 onClick={handleLogOut}
               >
                 Log out

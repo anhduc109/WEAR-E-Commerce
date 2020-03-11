@@ -5,6 +5,7 @@ import {
   LOAD_USER_SUCCESS,
   LoadUserSuccessAction,
   LOG_OUT,
+  GET_CART,
 } from '../../types'
 
 export default function user(
@@ -12,6 +13,7 @@ export default function user(
     token: null,
     user: null,
     userLoaded: false,
+    cart: [],
   },
   action: UserActions
 ): UserState {
@@ -27,6 +29,11 @@ export default function user(
     case LOG_OUT: {
       const { user, userLoaded, token } = action.payload
       return { ...state, user, userLoaded, token }
+    }
+
+    case GET_CART: {
+      const { cart } = action.payload
+      return { ...state, cart }
     }
     default:
       return state

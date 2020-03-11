@@ -8,6 +8,7 @@ import {
   ProductActions,
   GetAllProductsAction,
   Product,
+  GET_CART,
 } from '../../types'
 
 export function addProduct(product: Product): ProductActions {
