@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import {
   AppBar,
@@ -7,6 +7,7 @@ import {
   IconButton,
   Button,
   Badge,
+  Drawer,
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,7 +15,8 @@ import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined'
 
 import LoginWithGoogle from './LoginWithGoogle'
 import { logOut } from '../redux/actions/user'
-import { AppState, Product } from '../types'
+import MenuDrawer from '../components/MenuDrawer'
+import { AppState, User } from '../types'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,13 +38,15 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 const NavBar = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+
   const classes = useStyles()
   const dispatch = useDispatch()
 
   // const existingToken = JSON.parse(localStorage.getItem('token') || 'null')
   // const user: any = jwt.decode(existingToken)
 
-  const user = useSelector((state: AppState) => state.user.user)
+  const user: User | null = useSelector((state: AppState) => state.user.user)
   const cart = useSelector((state: AppState) => state.user.cart)
 
   const countQuantity = (cart: any) => {
@@ -60,6 +64,13 @@ const NavBar = () => {
 
   return (
     <div className={classes.root}>
+      <Drawer
+        open={isDrawerOpen}
+        anchor="left"
+        onClose={() => setIsDrawerOpen(false)}
+      >
+        {user?.isAdmin && <MenuDrawer />}
+      </Drawer>
       <AppBar position="fixed" className={classes.root}>
         <Toolbar>
           <IconButton
@@ -67,6 +78,7 @@ const NavBar = () => {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            onClick={() => setIsDrawerOpen(true)}
           >
             <MenuIcon />
           </IconButton>
