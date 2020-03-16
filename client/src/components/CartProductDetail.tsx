@@ -16,6 +16,7 @@ import { CartProduct, AppState } from '../types'
 import {
   decreaseQuantityFetch,
   manageProductInCartFetch,
+  deleteProductInCartFetch,
 } from '../redux/actions'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexShrink: 1,
     },
     card: {
-      width: '80%',
+      width: '90%',
       margin: '0 auto',
       boxShadow: 'none',
     },
@@ -57,6 +58,10 @@ const CartProductDetail = ({ product }: CartProductProps) => {
     dispatch(manageProductInCartFetch(token, userId, productId, true))
   }
 
+  const handleDeleteProduct = () => {
+    dispatch(deleteProductInCartFetch(token, userId, productId))
+  }
+
   return (
     <Card className={classes.card}>
       <CardMedia
@@ -86,6 +91,13 @@ const CartProductDetail = ({ product }: CartProductProps) => {
       <Button variant="outlined" onClick={handleInCreaseQuantity}>
         +
       </Button>
+      <Typography
+        variant="body2"
+        className="delete-btn"
+        onClick={handleDeleteProduct}
+      >
+        DELETE
+      </Typography>
     </Card>
   )
 }

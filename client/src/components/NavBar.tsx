@@ -80,9 +80,9 @@ const NavBar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h4" className={classes.title}>
-            No Name
-          </Typography>
+          <Link to="/" className={classes.title}>
+            <Typography variant="h4">No Name</Typography>
+          </Link>
           {/* <TextField
             className={classes.searchField}
             label="Search"

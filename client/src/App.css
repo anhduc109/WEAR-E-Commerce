@@ -58,3 +58,8 @@ a {
 .cart-btn {
   border: solid 1px #cccccc;
 }
+
+.delete-btn:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

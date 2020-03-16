@@ -29,7 +29,7 @@ const UserCart = () => {
       <Typography variant="body1" color="textSecondary">
         {countQuantity(cart)} items
       </Typography>
-      <Grid className="cart-product-wrapper" container spacing={0}>
+      <Grid className="cart-product-wrapper" container spacing={3}>
         {cart.map(product => {
           return (
             <Grid item xs={3} key={product._id}>

@@ -143,3 +143,31 @@ export function manageProductInCartFetch(
     })
   }
 }
+
+export function deleteProductInCartFetch(
+  token: string | null,
+  userId: string | undefined,
+  productId: string | undefined
+) {
+  // const config = {
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // }
+
+  // const body = {
+  //   userId,
+  //   productId,
+  // }
+
+  return (dispatch: Dispatch) => {
+    return axios
+      .delete(`${baseURL}/users/cart`, {
+        headers: { Authorization: `Bearer ${token}` },
+        data: { userId, productId },
+      })
+      .then(res => {
+        dispatch(getCart(res.data))
+      })
+  }
+}
