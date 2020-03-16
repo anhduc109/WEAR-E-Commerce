@@ -13,7 +13,10 @@ import {
 import { Link } from 'react-router-dom'
 
 import { CartProduct, AppState } from '../types'
-import { decreaseQuantityFetch } from '../redux/actions'
+import {
+  decreaseQuantityFetch,
+  manageProductInCartFetch,
+} from '../redux/actions'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,9 +53,9 @@ const CartProductDetail = ({ product }: CartProductProps) => {
     dispatch(decreaseQuantityFetch(token, userId, productId, false))
   }
 
-  // const handleInCreaseQuantity = () => {
-
-  // }
+  const handleInCreaseQuantity = () => {
+    dispatch(manageProductInCartFetch(token, userId, productId, true))
+  }
 
   return (
     <Card className={classes.card}>
@@ -80,7 +83,9 @@ const CartProductDetail = ({ product }: CartProductProps) => {
         -
       </Button>
       <Button variant="outlined">{product.quantity}</Button>
-      <Button variant="outlined">+</Button>
+      <Button variant="outlined" onClick={handleInCreaseQuantity}>
+        +
+      </Button>
     </Card>
   )
 }

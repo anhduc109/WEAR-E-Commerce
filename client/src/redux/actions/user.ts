@@ -118,3 +118,28 @@ export function decreaseQuantityFetch(
     })
   }
 }
+
+export function manageProductInCartFetch(
+  token: string | null,
+  userId: string | undefined,
+  productId: string,
+  isIncreased: boolean
+) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+
+  const body = {
+    userId,
+    productId,
+    isIncreased,
+  }
+
+  return (dispatch: Dispatch) => {
+    return axios.put(`${baseURL}/users/cart`, body, config).then(res => {
+      dispatch(getCart(res.data))
+    })
+  }
+}
