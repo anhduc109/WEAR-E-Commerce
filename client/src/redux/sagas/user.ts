@@ -7,8 +7,6 @@ import {
   AppState,
   LogOutAction,
   LOG_OUT,
-  LOAD_USER_SUCCESS,
-  LoadUserSuccessAction,
 } from '../../types'
 import { isAdmin } from '../actions'
 
@@ -28,15 +26,7 @@ function* removeTokenFromLocalStorage(action: LogOutAction) {
   yield put(isAdmin(false))
 }
 
-// function* getCartFromUser(action: LoadUserSuccessAction) {
-//   const state: AppState = yield select()
-//   if (state.user.user && state.user.token) {
-//     yield put(fetchCart(state.user.token, state.user.user.id))
-//   }
-// }
-
 export default [
   takeLatest(ADD_JWT_TOKEN, saveTokenToLocalStorage),
   takeLatest(LOG_OUT, removeTokenFromLocalStorage),
-  // takeLatest(LOAD_USER_SUCCESS, getCartFromUser),
 ]

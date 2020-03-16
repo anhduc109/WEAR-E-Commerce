@@ -8,11 +8,8 @@ import {
   Card,
   CardMedia,
   CardContent,
-  Button,
 } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import AddIcon from '@material-ui/icons/Add'
-import RemoveIcon from '@material-ui/icons/Remove'
 
 import { CartProduct, AppState } from '../types'
 import {
@@ -53,7 +50,8 @@ const CartProductDetail = ({ product }: CartProductProps) => {
   const productId = productDetail._id
 
   const handleDecreaseQuantity = () => {
-    dispatch(decreaseQuantityFetch(token, userId, productId, false))
+    if (product.quantity > 1)
+      dispatch(decreaseQuantityFetch(token, userId, productId, false))
   }
 
   const handleInCreaseQuantity = () => {
@@ -87,7 +85,12 @@ const CartProductDetail = ({ product }: CartProductProps) => {
         </Typography>
       </CardContent>
       <div className="cart-btn-wrapper">
-        <div className="inline cart-btn" onClick={handleDecreaseQuantity}>
+        <div
+          className={`inline ${
+            product.quantity <= 1 ? 'cart-btn-disabled' : 'cart-btn'
+          }`}
+          onClick={handleDecreaseQuantity}
+        >
           -
         </div>
         <div className="inline quantity-btn">{product.quantity}</div>

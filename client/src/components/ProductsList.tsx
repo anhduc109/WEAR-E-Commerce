@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import {
   Grid,
-  Paper,
   Card,
-  CardHeader,
   CardMedia,
   CardContent,
   Typography,
@@ -42,7 +40,7 @@ const ProductsList = () => {
 
   useEffect(() => {
     dispatch(fetchAllProduct(token))
-  }, [])
+  }, [token, dispatch])
 
   return (
     <Grid container className={classes.root} spacing={2}>

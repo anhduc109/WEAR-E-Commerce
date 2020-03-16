@@ -65,6 +65,21 @@ a {
   width: 25px;
   text-align: center;
   cursor: pointer;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
+.cart-btn-disabled {
+  cursor: default;
+  border: solid 1px #cccccc;
+  color: rgb(207, 207, 207);
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .cart-btn:active {
@@ -78,6 +93,9 @@ a {
   width: 40px;
   text-align: center;
   cursor: pointer;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
 }
 
 .delete-btn:hover {

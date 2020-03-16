@@ -8,7 +8,6 @@ import {
   LOG_OUT,
   LogOutAction,
   GET_CART,
-  Product,
   GetCartAction,
   User,
   CartProduct,

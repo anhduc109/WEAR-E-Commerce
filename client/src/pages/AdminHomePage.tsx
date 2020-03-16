@@ -1,11 +1,5 @@
 import React from 'react'
-import {
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
-  Divider,
-} from '@material-ui/core'
+import { Typography, List, ListItem, Divider } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 

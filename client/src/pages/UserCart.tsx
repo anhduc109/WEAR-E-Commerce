@@ -4,7 +4,7 @@ import { Typography, Grid, Button } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 import { countQuantity, countTotalPrice } from '../lib/cart/cart'
-import { AppState, CartProduct } from '../types'
+import { AppState } from '../types'
 import CartProductDetail from '../components/CartProductDetail'
 
 const useStyles = makeStyles((theme: Theme) =>

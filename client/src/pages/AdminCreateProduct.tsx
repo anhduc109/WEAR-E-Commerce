@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Typography, TextField, Button } from '@material-ui/core'
 // import AddOutlinedIcon from '@material-ui/icons/AddOutlined'
-import { useFormik, FieldArray, Field, validateYupSchema } from 'formik'
+import { useFormik } from 'formik'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import axios from 'axios'
 import * as Yup from 'yup'
@@ -158,12 +158,12 @@ const AdminCreateProduct = () => {
         >
           Submit
         </Button>
-        {isSuccessful == true && (
+        {isSuccessful === true && (
           <Typography className="success-alert" variant="h6">
             Success
           </Typography>
         )}
-        {isSuccessful == false && <Typography variant="h6">Failed</Typography>}
+        {isSuccessful === false && <Typography variant="h6">Failed</Typography>}
       </form>
     </div>
   )

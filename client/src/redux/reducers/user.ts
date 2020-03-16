@@ -3,7 +3,6 @@ import {
   UserActions,
   ADD_JWT_TOKEN,
   LOAD_USER_SUCCESS,
-  LoadUserSuccessAction,
   LOG_OUT,
   GET_CART,
   CHECK_ADMIN,
