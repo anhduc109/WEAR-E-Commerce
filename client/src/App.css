@@ -55,11 +55,36 @@ a {
   color: rgb(4, 112, 4);
 }
 
+.cart-btn-wrapper {
+  padding-bottom: 10px;
+}
+
 .cart-btn {
   border: solid 1px #cccccc;
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.cart-btn:active {
+  border-color: rgb(158, 158, 158);
+}
+
+.quantity-btn {
+  border-top: solid 1px #cccccc;
+  border-bottom: solid 1px #cccccc;
+  height: 25px;
+  width: 40px;
+  text-align: center;
+  cursor: pointer;
 }
 
 .delete-btn:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.inline {
+  display: inline-block;
 }

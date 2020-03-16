@@ -11,6 +11,8 @@ import {
   Button,
 } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import AddIcon from '@material-ui/icons/Add'
+import RemoveIcon from '@material-ui/icons/Remove'
 
 import { CartProduct, AppState } from '../types'
 import {
@@ -84,15 +86,17 @@ const CartProductDetail = ({ product }: CartProductProps) => {
           {productDetail.price} EUR
         </Typography>
       </CardContent>
-      <Button variant="outlined" onClick={handleDecreaseQuantity}>
-        -
-      </Button>
-      <Button variant="outlined">{product.quantity}</Button>
-      <Button variant="outlined" onClick={handleInCreaseQuantity}>
-        +
-      </Button>
+      <div className="cart-btn-wrapper">
+        <div className="inline cart-btn" onClick={handleDecreaseQuantity}>
+          -
+        </div>
+        <div className="inline quantity-btn">{product.quantity}</div>
+        <div className="inline cart-btn" onClick={handleInCreaseQuantity}>
+          +
+        </div>
+      </div>
       <Typography
-        variant="body2"
+        variant="caption"
         className="delete-btn"
         onClick={handleDeleteProduct}
       >
