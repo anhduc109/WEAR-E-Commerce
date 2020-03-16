@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core'
 
 import { Product, AppState, baseURL, CartProduct } from '../types'
+import { manageProductInCartFetch } from '../redux/actions'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,11 +35,14 @@ const useStyles = makeStyles((theme: Theme) =>
 const ProductDetail = () => {
   const [product, setProduct] = useState<Product>()
   const [disabled, setDisabled] = useState<boolean>(false)
+  const dispatch = useDispatch()
 
   const { productId } = useParams()
   const classes = useStyles()
 
   const userLoaded = useSelector((state: AppState) => state.user.userLoaded)
+  const token = useSelector((state: AppState) => state.user.token)
+  const user = useSelector((state: AppState) => state.user.user)
   const cart = useSelector((state: AppState) => state.user.cart)
 
   const fetchProduct = async (productId: any) => {
@@ -68,6 +72,10 @@ const ProductDetail = () => {
 
     handleExistedInCart()
   }, [productId, userLoaded, handleExistedInCart])
+
+  const handleAddToCart = () => {
+    dispatch(manageProductInCartFetch(token, user?.id, productId, true))
+  }
 
   return product ? (
     <div className={classes.root}>
@@ -111,6 +119,7 @@ const ProductDetail = () => {
             variant="contained"
             color="secondary"
             disabled={disabled}
+            onClick={handleAddToCart}
           >
             Add to Cart
           </Button>

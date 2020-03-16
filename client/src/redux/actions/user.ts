@@ -122,7 +122,7 @@ export function decreaseQuantityFetch(
 export function manageProductInCartFetch(
   token: string | null,
   userId: string | undefined,
-  productId: string,
+  productId: string | undefined,
   isIncreased: boolean
 ) {
   const config = {
