@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
@@ -9,10 +9,11 @@ import {
   List,
   ListItem,
   Button,
+  Box,
   ListItemText,
 } from '@material-ui/core'
 
-import { Product, AppState } from '../types'
+import { Product, AppState, baseURL, CartProduct } from '../types'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,29 +33,51 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const ProductDetail = () => {
   const [product, setProduct] = useState<Product>()
+  const [disabled, setDisabled] = useState<boolean>(false)
+
   const { productId } = useParams()
   const classes = useStyles()
 
   const userLoaded = useSelector((state: AppState) => state.user.userLoaded)
+  const cart = useSelector((state: AppState) => state.user.cart)
 
   const fetchProduct = async (productId: any) => {
-    let res = await axios.get(
-      `http://localhost:3000/api/v1/products/${productId}`
-    )
+    let res = await axios.get(`${baseURL}/products/${productId}`)
     setProduct(res.data)
   }
 
+  const handleExistedInCart = useCallback(() => {
+    if (userLoaded === true && cart.length === 0) {
+      setDisabled(false)
+    } else {
+      cart.some((cartProduct: CartProduct) => {
+        if (cartProduct.product._id === productId) {
+          return setDisabled(true)
+        }
+      })
+    }
+  }, [cart, productId, userLoaded])
+
   useEffect(() => {
     fetchProduct(productId)
-  }, [])
 
-  console.log(userLoaded)
+    // Handle Add To Cart Button
+    if (userLoaded === true) {
+      setDisabled(false)
+    } else setDisabled(true)
+
+    handleExistedInCart()
+  }, [productId, userLoaded, handleExistedInCart])
 
   return product ? (
     <div className={classes.root}>
       <Grid container>
         <Grid item xs={7}>
-          <img className="responsive-img" src={product?.img}></img>
+          <img
+            className="responsive-img"
+            src={product.img}
+            alt={product.name}
+          />
         </Grid>
         <Grid item xs={5} className={classes.detailWrapper}>
           <Typography variant="h4">{product.name}</Typography>
@@ -87,10 +110,17 @@ const ProductDetail = () => {
             className={classes.button}
             variant="contained"
             color="secondary"
-            disabled={userLoaded == true ? false : true}
+            disabled={disabled}
           >
             Add to Cart
           </Button>
+          {userLoaded && disabled === true && (
+            <Typography component="div" variant="body2" color="textSecondary">
+              <Box fontStyle="italic" textAlign="center" m={1}>
+                This item is in Cart
+              </Box>
+            </Typography>
+          )}
         </Grid>
       </Grid>
     </div>
