@@ -2,8 +2,33 @@ body {
   background-color: white !important;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .page-wrapper {
-  padding: 100px 20px;
+  padding: 7% 2%;
+}
+
+.cart-wrapper {
+  padding: 7% 6%;
+}
+
+.cart-product-wrapper {
+  padding-top: 16px;
+}
+
+.cart-price-wrapper {
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  border-top: solid 1px #e5e5e5;
+  text-align: center;
+  background-color: white;
 }
 
 .product-name {
@@ -20,4 +45,16 @@ body {
 .responsive-img {
   height: auto;
   width: 100%;
+}
+
+.form-center {
+  text-align: center;
+}
+
+.success-alert {
+  color: rgb(4, 112, 4);
+}
+
+.cart-btn {
+  border: solid 1px #cccccc;
 }

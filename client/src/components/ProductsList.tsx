@@ -9,7 +9,6 @@ import {
   CardMedia,
   CardContent,
   Typography,
-  Box,
 } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
@@ -26,6 +25,9 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '90%',
       margin: '0 auto',
       boxShadow: 'none',
+    },
+    cardContent: {
+      padding: '10px 0',
     },
   })
 )
@@ -53,7 +55,7 @@ const ProductsList = () => {
                 src={product.img}
                 title={product.name}
               />
-              <CardContent>
+              <CardContent className={classes.cardContent}>
                 <Link to={`/products/${product._id}`}>
                   <Typography
                     className="product-name"
@@ -64,7 +66,7 @@ const ProductsList = () => {
                     {product.name}
                   </Typography>
                 </Link>
-                <Typography variant="body2" color="textPrimary" component="p">
+                <Typography variant="body1" color="textSecondary" component="p">
                   {product.price} EUR
                 </Typography>
               </CardContent>

@@ -11,6 +11,21 @@ import makeStore from './redux/store'
 const store = makeStore()
 
 const theme = createMuiTheme({
+  typography: {
+    fontFamily: 'Helvetica',
+    h3: {
+      fontWeight: 700,
+    },
+    h4: {
+      fontWeight: 700,
+    },
+    h5: {
+      fontWeight: 700,
+    },
+  },
+  shape: {
+    borderRadius: 0,
+  },
   palette: {
     // background: '#FFFFFF',
     primary: {

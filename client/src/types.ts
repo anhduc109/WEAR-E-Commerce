@@ -1,3 +1,6 @@
+//Server route
+export const baseURL = 'http://localhost:3000/api/v1'
+
 // Action types
 // Product
 export const ADD_PRODUCT = 'ADD_PRODUCT'
@@ -11,6 +14,7 @@ export const GET_CART = 'GET_CART'
 export const ADD_JWT_TOKEN = 'ADD_JWT_TOKEN'
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS'
 export const LOG_OUT = 'LOG_OUT'
+export const CHECK_ADMIN = 'CHECK_ADMIN'
 
 // Enum
 export enum DialogType {
@@ -38,6 +42,13 @@ export type User = {
   id: string
   iat: number
   exp: number
+}
+
+// Cart
+export type CartProduct = {
+  _id: string
+  product: Product
+  quantity: number
 }
 
 // Product actions
@@ -75,7 +86,7 @@ export type GetAllProductsAction = {
 export type GetCartAction = {
   type: typeof GET_CART
   payload: {
-    cart: Product[]
+    cart: CartProduct[]
   }
 }
 
@@ -94,13 +105,20 @@ export type LoadUserSuccessAction = {
   }
 }
 
+export type CheckAdminAction = {
+  type: typeof CHECK_ADMIN
+  payload: {
+    isAdmin: boolean
+  }
+}
+
 export type LogOutAction = {
   type: typeof LOG_OUT
   payload: {
     token: string | null
     user: any
     userLoaded: Boolean
-    cart: Product[]
+    cart: CartProduct[]
   }
 }
 
@@ -117,6 +135,7 @@ export type UserActions =
   | LoadUserSuccessAction
   | LogOutAction
   | GetCartAction
+  | CheckAdminAction
 
 export type ProductState = {
   products: Product[]
@@ -126,7 +145,8 @@ export type UserState = {
   token: string | null
   user: User | null
   userLoaded: Boolean
-  cart: Product[]
+  isAdmin: boolean
+  cart: CartProduct[]
 }
 
 // Using dynamic keys from an enum

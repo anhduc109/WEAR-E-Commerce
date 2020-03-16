@@ -8,7 +8,6 @@ import {
   Typography,
 } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import classes from '*.module.css'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -32,11 +31,18 @@ const MenuDrawer = () => {
           Management Menu
         </Typography>
         <ListItem button>
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem button>
           <ListItemText primary="Create new products" />
         </ListItem>
         <Divider />
         <ListItem button>
           <ListItemText primary="Manage products" />
+        </ListItem>
+        <Divider />
+        <ListItem button>
+          <ListItemText primary="Manage users" />
         </ListItem>
         <Divider />
       </List>

@@ -7,15 +7,18 @@ import {
   IconButton,
   Button,
   Badge,
+  TextField,
   Drawer,
 } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import { useDispatch, useSelector } from 'react-redux'
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined'
+import { Link } from 'react-router-dom'
 
 import LoginWithGoogle from './LoginWithGoogle'
 import { logOut } from '../redux/actions/user'
 import MenuDrawer from '../components/MenuDrawer'
+import { countQuantity } from '../lib/cart/cart'
 import { AppState, User } from '../types'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,6 +27,10 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       background: 'transparent',
       boxShadow: 'none',
+    },
+    searchField: {
+      marginRight: '5%',
+      width: '300px',
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -48,15 +55,6 @@ const NavBar = () => {
 
   const user: User | null = useSelector((state: AppState) => state.user.user)
   const cart = useSelector((state: AppState) => state.user.cart)
-
-  const countQuantity = (cart: any) => {
-    let count = 0
-    cart.map((product: any) => {
-      count += product.quantity
-    })
-    return count
-  }
-  const quantityInCart = countQuantity(cart)
 
   const handleLogOut = () => {
     dispatch(logOut())
@@ -85,14 +83,21 @@ const NavBar = () => {
           <Typography variant="h4" className={classes.title}>
             No Name
           </Typography>
+          {/* <TextField
+            className={classes.searchField}
+            label="Search"
+            color="secondary"
+          /> */}
           {user ? (
             <>
               <Typography variant="h6">Hi, {user.username}</Typography>
-              <IconButton className={classes.marginButton}>
-                <Badge badgeContent={quantityInCart}>
-                  <LocalMallOutlinedIcon />
-                </Badge>
-              </IconButton>
+              <Link to="/cart">
+                <IconButton className={classes.marginButton}>
+                  <Badge badgeContent={countQuantity(cart)}>
+                    <LocalMallOutlinedIcon />
+                  </Badge>
+                </IconButton>
+              </Link>
               <Button
                 className={classes.marginButton}
                 variant="outlined"

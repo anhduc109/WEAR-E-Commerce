@@ -12,6 +12,7 @@ const initState: AppState = {
     user: null,
     userLoaded: false,
     cart: [],
+    isAdmin: false,
   },
   product: {
     products: [],

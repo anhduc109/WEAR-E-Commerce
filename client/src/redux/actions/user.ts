@@ -11,6 +11,7 @@ import {
   Product,
   GetCartAction,
   User,
+  CartProduct,
 } from '../../types'
 
 export function addJWTToken(token: string): ADDJWTTokenAction {
@@ -90,7 +91,14 @@ export function fetchCart(token: string, userId: string) {
   }
 }
 
-export function getCart(cart: Product[]): GetCartAction {
+export const isAdmin = (isAdmin: boolean) => ({
+  type: 'CHECK_ADMIN',
+  payload: {
+    isAdmin,
+  },
+})
+
+export function getCart(cart: CartProduct[]): GetCartAction {
   return {
     type: GET_CART,
     payload: {
