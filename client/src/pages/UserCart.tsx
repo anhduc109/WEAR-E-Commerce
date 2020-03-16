@@ -32,7 +32,7 @@ const UserCart = () => {
       <Grid className="cart-product-wrapper" container spacing={0}>
         {cart.map(product => {
           return (
-            <Grid item xs={3} key={product.product._id}>
+            <Grid item xs={3} key={product._id}>
               <CartProductDetail product={product} />
             </Grid>
           )

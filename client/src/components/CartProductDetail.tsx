@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   Typography,
   makeStyles,
@@ -10,7 +11,9 @@ import {
   Button,
 } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import { CartProduct, Product } from '../types'
+
+import { CartProduct, AppState } from '../types'
+import { decreaseQuantityFetch } from '../redux/actions'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,9 +32,27 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const CartProductDetail = ({ product }: any) => {
+type CartProductProps = {
+  product: CartProduct
+}
+
+const CartProductDetail = ({ product }: CartProductProps) => {
   const classes = useStyles()
   const productDetail = product.product
+  const dispatch = useDispatch()
+
+  const user = useSelector((state: AppState) => state.user)
+  const token = user.token
+  const userId = user.user?.id
+  const productId = productDetail._id
+
+  const handleDecreaseQuantity = () => {
+    dispatch(decreaseQuantityFetch(token, userId, productId, false))
+  }
+
+  // const handleInCreaseQuantity = () => {
+
+  // }
 
   return (
     <Card className={classes.card}>
@@ -55,10 +76,10 @@ const CartProductDetail = ({ product }: any) => {
           {productDetail.price} EUR
         </Typography>
       </CardContent>
-      <Button variant="outlined">-</Button>
-      <Button variant="outlined" disabled>
-        {product.quantity}
+      <Button variant="outlined" onClick={handleDecreaseQuantity}>
+        -
       </Button>
+      <Button variant="outlined">{product.quantity}</Button>
       <Button variant="outlined">+</Button>
     </Card>
   )

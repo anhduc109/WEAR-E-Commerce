@@ -8,13 +8,14 @@ export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
 
 export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCT'
-export const GET_CART = 'GET_CART'
 
 // User
 export const ADD_JWT_TOKEN = 'ADD_JWT_TOKEN'
 export const LOAD_USER_SUCCESS = 'LOAD_USER_SUCCESS'
 export const LOG_OUT = 'LOG_OUT'
 export const CHECK_ADMIN = 'CHECK_ADMIN'
+
+export const GET_CART = 'GET_CART'
 
 // Enum
 export enum DialogType {

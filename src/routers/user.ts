@@ -14,10 +14,6 @@ const router = express.Router()
 // Every path we define here will get /api/v1/users prefix
 router.post('/', createUser)
 
-router.get('/auth', (req: Request, res: Response) => {
-  res.send(req.user)
-})
-
 router.post('/cart', getCart)
 router.put('/cart', manageProductInCart)
 router.delete('/cart', removeProductInCart)
