@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import jwt from 'jsonwebtoken'
 
-import Home from './pages/Home'
+import UserHome from './pages/UserHome'
 import ProductDetail from './pages/ProductDetail'
 import { AppState } from './types'
 import AdminHomePage from './pages/AdminHomePage'
@@ -20,7 +20,7 @@ const Routes = () => {
       <Route
         exact
         path="/"
-        component={user && user.isAdmin ? AdminHomePage : Home}
+        component={user && user.isAdmin ? AdminHomePage : UserHome}
       />
       <Route exact path="/products/:productId" component={ProductDetail} />
       {user ? <Route path="/cart" component={UserCart} /> : <Redirect to="/" />}

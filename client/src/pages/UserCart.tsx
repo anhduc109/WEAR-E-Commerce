@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import { Typography, Grid, Button } from '@material-ui/core'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const UserCart = () => {
   const classes = useStyles()
   const cart = useSelector((state: AppState) => state.user.cart)
+  const history = useHistory()
 
   return (
     <div className="cart-wrapper">
@@ -44,6 +46,7 @@ const UserCart = () => {
             variant="outlined"
             color="secondary"
             className={classes.button}
+            onClick={() => history.goBack()}
           >
             Go back
           </Button>
