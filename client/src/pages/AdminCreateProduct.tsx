@@ -60,7 +60,8 @@ const AdminCreateProduct = () => {
         .max(99999999, 'Too big'),
     }),
     onSubmit: async values => {
-      let res = await axios.post(`${baseURL}/products`, values, config)
+      let res = await axios.post(`${baseURL}/admin/products`, values, config)
+      console.log(config)
       res.data.name ? setIsSuccessful(true) : setIsSuccessful(false)
     },
   })

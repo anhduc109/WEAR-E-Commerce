@@ -13,6 +13,7 @@ import { MONGODB_URI } from './util/secrets'
 // Routes
 import productRouter from './routers/product'
 import userRouter from './routers/user'
+import adminRouter from './routers/admin'
 
 // Middlewares
 import apiErrorHandler from './middlewares/apiErrorHandler'
@@ -63,6 +64,9 @@ app.use(passport.session())
 // Secured every API endpoints with authJWT
 const excludedPaths = [/v1\/users\/(google\-)?authenticate/, /v1\/products/]
 app.use('/api', apiContentType, unless(excludedPaths, authJWT))
+
+// User user router
+app.use('/api/v1/admin', adminRouter)
 
 // Use product router
 app.use('/api/v1/products', productRouter)

@@ -13,6 +13,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu'
 import { useDispatch, useSelector } from 'react-redux'
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined'
+import jwt from 'jsonwebtoken'
 import { Link } from 'react-router-dom'
 
 import LoginWithGoogle from './LoginWithGoogle'
@@ -50,10 +51,12 @@ const NavBar = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
 
-  // const existingToken = JSON.parse(localStorage.getItem('token') || 'null')
-  // const user: any = jwt.decode(existingToken)
+  const existingToken = JSON.parse(localStorage.getItem('token') || 'null')
+  const user: any = jwt.decode(existingToken)
 
-  const user: User | null = useSelector((state: AppState) => state.user.user)
+  const userInRedux: User | null = useSelector(
+    (state: AppState) => state.user.user
+  )
   const cart = useSelector((state: AppState) => state.user.cart)
 
   const handleLogOut = () => {

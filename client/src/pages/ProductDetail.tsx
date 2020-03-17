@@ -57,7 +57,7 @@ const ProductDetail = () => {
       cart.some((cartProduct: CartProduct) => {
         if (cartProduct.product._id === productId) {
           return setDisabled(true)
-        } else return setDisabled(false)
+        }
       })
     }
   }, [cart, productId, userLoaded])
