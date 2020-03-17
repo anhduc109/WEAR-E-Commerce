@@ -18,7 +18,8 @@ import { Link, useLocation } from 'react-router-dom'
 
 import LoginWithGoogle from './LoginWithGoogle'
 import { logOut } from '../redux/actions/user'
-import MenuDrawer from '../components/MenuDrawer'
+import AdminMenuDrawer from './AdminMenuDrawer'
+import UserMenuDrawer from './UserMenuDrawer'
 import { countQuantity } from '../lib/cart/cart'
 import { AppState, User } from '../types'
 
@@ -47,6 +48,10 @@ const NavBar = () => {
       title: {
         flexGrow: 1,
       },
+      drawer: {
+        boxShadow: 'none',
+        width: '300px',
+      },
     })
   )
   const classes = useStyles()
@@ -66,11 +71,13 @@ const NavBar = () => {
   return (
     <div className={classes.root}>
       <Drawer
+        BackdropProps={{ invisible: true }}
+        elevation={0}
         open={isDrawerOpen}
         anchor="left"
         onClose={() => setIsDrawerOpen(false)}
       >
-        {user?.isAdmin && <MenuDrawer />}
+        {user?.isAdmin ? <AdminMenuDrawer /> : <UserMenuDrawer />}
       </Drawer>
       <AppBar position="fixed" className={classes.root}>
         <Toolbar>

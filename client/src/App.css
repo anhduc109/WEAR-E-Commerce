@@ -31,6 +31,12 @@ a {
   background-color: white;
 }
 
+.drawer-wrapper {
+  padding: 25% 10%;
+  width: 315px;
+  box-shadow: none;
+}
+
 .product-name {
   overflow: hidden; /* make sure it hides the content that overflows */
   white-space: nowrap; /* don't break the line */
@@ -105,4 +111,8 @@ a {
 
 .inline {
   display: inline-block;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

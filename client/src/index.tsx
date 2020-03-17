@@ -12,7 +12,7 @@ const store = makeStore()
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: 'Helvetica',
+    fontFamily: 'Helvetica Neue, Arial, sans-serif',
     h3: {
       fontWeight: 700,
     },

@@ -25,28 +25,28 @@ const AdminHomePage = () => {
       <br />
       <List className={classes.adminList}>
         <ListItem button>
-          <Typography variant="h5" align="center">
+          <Typography variant="h6" align="center">
             Ban some users
           </Typography>
         </ListItem>
         <Divider />
         <Link to="/admin/products">
           <ListItem button>
-            <Typography variant="h5" align="center">
+            <Typography variant="h6" align="center">
               Create new products
             </Typography>
           </ListItem>
         </Link>
         <Divider />
         <ListItem button>
-          <Typography variant="h5" align="center">
+          <Typography variant="h6" align="center">
             Manage some products
           </Typography>
         </ListItem>
         <Divider />
       </List>
       <br />
-      <Typography variant="h6" color="textSecondary" align="center">
+      <Typography variant="subtitle1" color="textSecondary" align="center">
         Tips: You can also click on the hamburger menu to manage users or
         products
       </Typography>
