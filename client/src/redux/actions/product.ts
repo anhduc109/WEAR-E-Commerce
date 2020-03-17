@@ -7,6 +7,7 @@ import {
   GET_ALL_PRODUCTS,
   ProductActions,
   Product,
+  baseURL,
 } from '../../types'
 
 export function addProduct(product: Product): ProductActions {
@@ -34,8 +35,24 @@ export function fetchAllProduct(token: string | null) {
     },
   }
   return (dispatch: Dispatch) => {
+    return axios.get(`${baseURL}/products`, config).then(res => {
+      dispatch(getAllProducts(res.data))
+    })
+  }
+}
+
+export function fetchCategoryProduct(
+  token: string | null,
+  category: string | null
+) {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+  return (dispatch: Dispatch) => {
     return axios
-      .get('http://localhost:3000/api/v1/products', config)
+      .get(`${baseURL}/products?category=${category}`, config)
       .then(res => {
         dispatch(getAllProducts(res.data))
       })

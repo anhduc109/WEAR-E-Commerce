@@ -8,9 +8,9 @@ import {
   CardContent,
   Typography,
 } from '@material-ui/core'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
-import { fetchAllProduct } from '../redux/actions'
+import { fetchAllProduct, fetchCategoryProduct } from '../redux/actions'
 import { AppState } from '../types'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -30,17 +30,28 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search)
+}
+
 const ProductsList = () => {
   const classes = useStyles()
-
   const dispatch = useDispatch()
 
   const token = useSelector((state: AppState) => state.user.token)
   const products = useSelector((state: AppState) => state.product.products)
 
+  const query = useQuery()
+
   useEffect(() => {
-    dispatch(fetchAllProduct(token))
-  }, [token, dispatch])
+    console.log('vao')
+
+    if (query.get('category') !== null) {
+      dispatch(fetchCategoryProduct(token, query.get('category')))
+    } else {
+      dispatch(fetchAllProduct(token))
+    }
+  }, [token, dispatch, query.get('category')])
 
   return (
     <Grid container className={classes.root} spacing={2}>
