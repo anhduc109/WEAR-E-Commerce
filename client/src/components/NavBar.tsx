@@ -14,7 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu'
 import { useDispatch, useSelector } from 'react-redux'
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined'
 import jwt from 'jsonwebtoken'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import LoginWithGoogle from './LoginWithGoogle'
 import { logOut } from '../redux/actions/user'
@@ -22,34 +22,34 @@ import MenuDrawer from '../components/MenuDrawer'
 import { countQuantity } from '../lib/cart/cart'
 import { AppState, User } from '../types'
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-      background: 'transparent',
-      boxShadow: 'none',
-    },
-    searchField: {
-      marginRight: '5%',
-      width: '300px',
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    marginButton: {
-      marginLeft: 10,
-    },
-    title: {
-      flexGrow: 1,
-    },
-  })
-)
-
 const NavBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-
-  const classes = useStyles()
   const dispatch = useDispatch()
+  const location = useLocation()
+
+  const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+      root: {
+        flexGrow: 1,
+        background: location.pathname === '/cart' ? 'white' : 'transparent',
+        boxShadow: 'none',
+      },
+      searchField: {
+        marginRight: '5%',
+        width: '300px',
+      },
+      menuButton: {
+        marginRight: theme.spacing(2),
+      },
+      marginButton: {
+        marginLeft: 10,
+      },
+      title: {
+        flexGrow: 1,
+      },
+    })
+  )
+  const classes = useStyles()
 
   const existingToken = JSON.parse(localStorage.getItem('token') || 'null')
   const user: any = jwt.decode(existingToken)
