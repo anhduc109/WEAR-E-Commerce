@@ -12,11 +12,9 @@ const clientId =
 const LoginWithGoogle = () => {
   const dispatch = useDispatch()
 
-  console.log(process.env.BACKEND_URL)
-
   const responseGoogle = async (response: any) => {
     let res = await axios.post(
-      `${process.env.BASE_URL}/users/google-authenticate`,
+      `https://e-clothing-api.herokuapp.com/api/v1/users/google-authenticate`,
       { id_token: response.tokenObj.id_token }
     )
     dispatch(addJWTToken(res.data.token))
