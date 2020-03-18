@@ -12,6 +12,8 @@ const clientId =
 const LoginWithGoogle = () => {
   const dispatch = useDispatch()
 
+  console.log(process.env.BACKEND_URL)
+
   const responseGoogle = async (response: any) => {
     let res = await axios.post(
       `${process.env.BASE_URL}/users/google-authenticate`,

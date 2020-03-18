@@ -1,5 +1,5 @@
 //Server route
-export const baseURL = process.env.BASE_URL
+export const baseURL = process.env.BACKEND_URL
 
 // Action types
 // Product
