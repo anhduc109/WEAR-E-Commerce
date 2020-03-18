@@ -44,8 +44,6 @@ const ProductsList = () => {
   const query = useQuery()
 
   useEffect(() => {
-    console.log('vao')
-
     if (query.get('category') !== null) {
       dispatch(fetchCategoryProduct(token, query.get('category')))
     } else {

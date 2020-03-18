@@ -22,12 +22,17 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     detailWrapper: {
-      padding: '10% 5%',
+      padding: '8% 6%',
     },
     button: {
       margin: '0 auto',
       width: '100%',
       boxShadow: 'none',
+    },
+    list: {
+      margin: '10px 0px',
+      borderTop: '1px solid black',
+      borderBottom: '1px solid black',
     },
   })
 )
@@ -93,8 +98,17 @@ const ProductDetail = () => {
           <br />
           <Typography variant="h6">{product.description}</Typography>
           <br />
+          <Typography variant="h6">HEIGHT OF MODEL: 189 cm. / 74.4″</Typography>
+          <br />
+          <Typography variant="h6">JOIN LIFE</Typography>
+          <Typography variant="body1">
+            Care for fiber: at least 25% recycled polyester. Recycled polyester
+            is made from recycled plastic bottles and consumes less water, less
+            energy and fewer natural resources.
+          </Typography>
+          <br />
           <Typography variant="h6">Sizes</Typography>
-          <List component="nav">
+          <List component="nav" className={classes.list}>
             {product.sizes.map(size => {
               return (
                 <ListItem button key={size}>
