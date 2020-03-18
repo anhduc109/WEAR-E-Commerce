@@ -1,5 +1,5 @@
 //Server route
-export const baseURL = 'http://localhost:3000/api/v1'
+export const baseURL = 'https://e-clothing-api.herokuapp.com/api/v1'
 
 // Action types
 // Product
