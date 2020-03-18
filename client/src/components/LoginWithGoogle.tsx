@@ -14,7 +14,7 @@ const LoginWithGoogle = () => {
 
   const responseGoogle = async (response: any) => {
     let res = await axios.post(
-      'http://localhost:3000/api/v1/users/google-authenticate',
+      `${process.env.BASE_URL}/users/google-authenticate`,
       { id_token: response.tokenObj.id_token }
     )
     dispatch(addJWTToken(res.data.token))

@@ -1,5 +1,5 @@
 //Server route
-export const baseURL = 'https://e-clothing-api.herokuapp.com/api/v1'
+export const baseURL = process.env.BASE_URL
 
 // Action types
 // Product
