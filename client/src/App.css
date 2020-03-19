@@ -86,6 +86,11 @@ a {
   text-align: center;
 }
 
+.store-img {
+  width: 70%;
+  padding-bottom: 30px;
+}
+
 .google-login-btn {
   background: transparent !important;
   box-shadow: none !important;

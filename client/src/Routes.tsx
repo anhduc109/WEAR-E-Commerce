@@ -10,6 +10,7 @@ import AdminHomePage from './pages/AdminHomePage'
 import LandingPage from './pages/LandingPage'
 import AdminCreateProduct from './pages/AdminCreateProduct'
 import UserCart from './pages/UserCart'
+import AdminBanUser from './pages/AdminBanUser'
 
 const Routes = () => {
   const existingToken = JSON.parse(localStorage.getItem('token') || 'null')
@@ -28,6 +29,13 @@ const Routes = () => {
       ) : (
         <Redirect to="/" />
       )}
+
+      {user && user.isAdmin ? (
+        <Route exact path="/admin/users" component={AdminBanUser} />
+      ) : (
+        <Redirect to="/" />
+      )}
+
       {user && user.isAdmin ? (
         <Route path="/admin/products" component={AdminCreateProduct} />
       ) : (

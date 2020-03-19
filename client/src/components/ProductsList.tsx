@@ -59,7 +59,7 @@ const ProductsList = () => {
 
   return (
     <>
-      {(category === 'Man' || category === 'Woman') && products.length > 1 && (
+      {(category === 'Man' || category === 'Woman') && products.length > 1 ? (
         <div className="category-header-wrapper">
           <Card className={classes.mainCard}>
             <Link to={`/products/${products[0]._id}`}>
@@ -83,6 +83,13 @@ const ProductsList = () => {
               </CardContent>
             </Link>
           </Card>
+        </div>
+      ) : (
+        <div className="category-header-wrapper">
+          <img
+            className="store-img"
+            src="https://static.zara.net/photos//mkt/spots/ss20-joinlife/index-ourstores/desktop-img-7.st.jpg?2222222222222&ts=1584614815000"
+          />
         </div>
       )}
       <Grid container className={classes.root} spacing={2}>

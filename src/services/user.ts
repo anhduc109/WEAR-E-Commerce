@@ -1,6 +1,24 @@
 import User, { UserDocument } from '../models/User'
 import mongoose from 'mongoose'
 
+function findAll(): Promise<UserDocument> {
+  return User.find()
+    .exec()
+    .then()
+}
+
+function banOrUnbanUser(userId: string): Promise<UserDocument> {
+  return User.findById(userId)
+    .exec()
+    .then(user => {
+      if (!user) {
+        throw new Error(`User ${userId} not found`)
+      }
+      user.isBanned = !user.isBanned
+      return user.save()
+    })
+}
+
 function create(user: UserDocument): Promise<UserDocument> {
   // Check for existing user
   return user.save()
@@ -105,6 +123,8 @@ function removeProductInCart(
 
 export default {
   create,
+  findAll,
+  banOrUnbanUser,
   getCart,
   addProductToCart,
   decreaseQuantityOfProduct,

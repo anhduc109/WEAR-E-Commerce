@@ -20,7 +20,7 @@ const UserMenuDrawer = () => {
         NEW IN
       </Typography>
       <br />
-      <Link to="/">
+      <Link to="/products">
         <Typography className="cursor-pointer" variant="h6">
           ALL PRODUCTS
         </Typography>
