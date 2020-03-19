@@ -6,6 +6,7 @@ import {
   ListItemText,
   Typography,
 } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(() =>
@@ -29,12 +30,16 @@ const MenuDrawer = () => {
         <Typography variant="h6" className={classes.headerDrawer}>
           Management Menu
         </Typography>
-        <ListItem button>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Create new products" />
-        </ListItem>
+        <Link to="/admin">
+          <ListItem button>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </Link>
+        <Link to="/admin/products">
+          <ListItem button>
+            <ListItemText primary="Create new products" />
+          </ListItem>
+        </Link>
         <Divider />
         <ListItem button>
           <ListItemText primary="Manage products" />

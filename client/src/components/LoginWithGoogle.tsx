@@ -7,13 +7,12 @@ import jwt from 'jsonwebtoken'
 import { addJWTToken, loadUser, fetchCart } from '../redux/actions'
 
 const clientId =
-  '111698224932-cgmau8beidfr5fv238ocnbrg1ude0sbd.apps.googleusercontent.com'
+  '111698224932-fo4ic8ib8tvok7r9t0iddnt34a4b5kl9.apps.googleusercontent.com'
 
 const LoginWithGoogle = () => {
   const dispatch = useDispatch()
 
   const responseGoogle = async (response: any) => {
-    console.log(response)
     let res = await axios.post(
       `https://e-clothing-api.herokuapp.com/api/v1/users/google-authenticate`,
       { id_token: response.tokenObj.id_token }
@@ -22,6 +21,7 @@ const LoginWithGoogle = () => {
     const decodedToken: any = jwt.decode(res.data.token)
     dispatch(loadUser(decodedToken))
     dispatch(fetchCart(res.data.token, decodedToken.id))
+    if (decodedToken.isAdmin) window.location.href = '/admin'
   }
 
   return (

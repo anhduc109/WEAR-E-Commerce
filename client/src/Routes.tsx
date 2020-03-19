@@ -19,13 +19,15 @@ const Routes = () => {
   return (
     <Switch>
       <Route exact path="/" component={LandingPage} />
-      <Route
-        exact
-        path="/products"
-        component={user && user.isAdmin ? AdminHomePage : UserHome}
-      />
+      <Route exact path="/products" component={UserHome} />
       <Route exact path="/products/:productId" component={ProductDetail} />
       {user ? <Route path="/cart" component={UserCart} /> : <Redirect to="/" />}
+
+      {user && user.isAdmin ? (
+        <Route exact path="/admin" component={AdminHomePage} />
+      ) : (
+        <Redirect to="/" />
+      )}
       {user && user.isAdmin ? (
         <Route path="/admin/products" component={AdminCreateProduct} />
       ) : (

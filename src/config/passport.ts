@@ -11,7 +11,7 @@ import User from '../models/User'
 const GoogleTokenStrategy = require('passport-google-id-token')
 
 const GOOGLE_CLIENT_ID =
-  '111698224932-cgmau8beidfr5fv238ocnbrg1ude0sbd.apps.googleusercontent.com'
+  '111698224932-fo4ic8ib8tvok7r9t0iddnt34a4b5kl9.apps.googleusercontent.com'
 
 passport.serializeUser<any, any>((user, done) => {
   done(undefined, user.id)
