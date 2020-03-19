@@ -8,7 +8,42 @@ import {
   NotFoundError,
   BadRequestError,
   InternalServerError,
+  ForbiddenError,
 } from '../helpers/apiError'
+
+//GET /users
+export const findAll = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const user: any = req.user
+    if (user.isAdmin === true) {
+      res.json(await UserService.findAll())
+    } else throw new ForbiddenError('User is not admin')
+  } catch (error) {
+    if (error.statusCode === 403) next(new ForbiddenError(error.message))
+    next(new NotFoundError('User not found', error))
+  }
+}
+
+//PUT /users
+export const banOrUnbanUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const user: any = req.user
+    if (user.isAdmin === true) {
+      res.json(await UserService.banOrUnbanUser(req.body.userId))
+    } else throw new ForbiddenError('User is not admin')
+  } catch (error) {
+    if (error.statusCode === 403) next(new ForbiddenError(error.message))
+    next(new NotFoundError('User not found', error))
+  }
+}
 
 // POST /users
 export const createUser = async (

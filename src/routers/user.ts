@@ -3,6 +3,8 @@ import passport from 'passport'
 
 import {
   createUser,
+  findAll,
+  banOrUnbanUser,
   getCart,
   manageProductInCart,
   removeProductInCart,
@@ -13,6 +15,9 @@ const router = express.Router()
 
 // Every path we define here will get /api/v1/users prefix
 router.post('/', createUser)
+
+router.get('/', findAll)
+router.put('/', banOrUnbanUser)
 
 router.post('/cart', getCart)
 router.put('/cart', manageProductInCart)
