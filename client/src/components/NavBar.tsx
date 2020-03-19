@@ -35,6 +35,9 @@ const NavBar = () => {
         background: location.pathname === '/cart' ? 'white' : 'transparent',
         boxShadow: 'none',
       },
+      toolBar: {
+        height: 100,
+      },
       searchField: {
         marginRight: '5%',
         width: '300px',
@@ -80,7 +83,7 @@ const NavBar = () => {
         {user?.isAdmin ? <AdminMenuDrawer /> : <UserMenuDrawer />}
       </Drawer>
       <AppBar position="fixed" className={classes.root}>
-        <Toolbar>
+        <Toolbar className={classes.toolBar}>
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -91,13 +94,8 @@ const NavBar = () => {
             <MenuIcon />
           </IconButton>
           <Link to="/" className={classes.title}>
-            <Typography variant="h4">No Name</Typography>
+            <Typography variant="h3">WEAR</Typography>
           </Link>
-          {/* <TextField
-            className={classes.searchField}
-            label="Search"
-            color="secondary"
-          /> */}
           {user ? (
             <>
               <Typography variant="h6">Hi, {user.username}</Typography>

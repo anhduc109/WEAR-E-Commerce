@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Typography, TextField, Button } from '@material-ui/core'
+import {
+  Typography,
+  TextField,
+  Button,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+} from '@material-ui/core'
 // import AddOutlinedIcon from '@material-ui/icons/AddOutlined'
 import { useFormik } from 'formik'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
@@ -14,11 +22,16 @@ const useStyles = makeStyles((theme: Theme) =>
     input: {
       paddingBottom: 10,
       width: '60%',
+      margin: '0 auto',
     },
     submitBtn: {
       marginTop: 16,
       width: '60%',
       boxShadow: 'none',
+    },
+    formLabel: {
+      textAlign: 'left',
+      paddingBottom: 10,
     },
   })
 )
@@ -36,7 +49,7 @@ const AdminCreateProduct = () => {
     initialValues: {
       name: '',
       description: '',
-      categories: [],
+      categories: ['Man'],
       variants: [],
       price: 0,
       img: '',
@@ -100,9 +113,22 @@ const AdminCreateProduct = () => {
           <Typography variant="body1">{formik.errors.description}</Typography>
         ) : null}
         <br />
-        <TextField
-          id="categories[0]."
+        <br />
+        <RadioGroup
+          aria-label="gender"
+          id="categories[0]"
           name="categories[0]"
+          value={formik.values.categories[0]}
+          onChange={formik.handleChange}
+          className={classes.input}
+        >
+          <FormLabel className={classes.formLabel}>Gender</FormLabel>
+          <FormControlLabel value="Man" control={<Radio />} label="Man" />
+          <FormControlLabel value="Woman" control={<Radio />} label="Woman" />
+        </RadioGroup>
+        <TextField
+          id="categories[1]."
+          name="categories[1]"
           onChange={formik.handleChange}
           label="Categories"
           color="secondary"
@@ -111,9 +137,6 @@ const AdminCreateProduct = () => {
         {formik.touched.categories && formik.errors.categories ? (
           <Typography variant="body1">{formik.errors.categories}</Typography>
         ) : null}
-        {/* <IconButton aria-label="add more category">
-          <AddOutlinedIcon />
-        </IconButton> */}
         <br />
         <TextField
           id="variants[0]"

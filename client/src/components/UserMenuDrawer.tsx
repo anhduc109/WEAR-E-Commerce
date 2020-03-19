@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom'
 const UserMenuDrawer = () => {
   return (
     <div className="drawer-wrapper">
-      <Link to="/?category=Woman">
+      <Link to="/products/?category=Woman">
         <Typography className="cursor-pointer" variant="h4">
           WOMAN
         </Typography>
       </Link>
-      <Link to="/?category=Man">
+      <Link to="/products/?category=Man">
         <Typography className="cursor-pointer" variant="h4">
           MAN
         </Typography>

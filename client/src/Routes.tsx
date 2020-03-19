@@ -7,6 +7,7 @@ import UserHome from './pages/UserHome'
 import ProductDetail from './pages/ProductDetail'
 import { AppState } from './types'
 import AdminHomePage from './pages/AdminHomePage'
+import LandingPage from './pages/LandingPage'
 import AdminCreateProduct from './pages/AdminCreateProduct'
 import UserCart from './pages/UserCart'
 
@@ -17,9 +18,10 @@ const Routes = () => {
   const userLoaded = useSelector((state: AppState) => state.user.userLoaded)
   return (
     <Switch>
+      <Route exact path="/" component={LandingPage} />
       <Route
         exact
-        path="/"
+        path="/products"
         component={user && user.isAdmin ? AdminHomePage : UserHome}
       />
       <Route exact path="/products/:productId" component={ProductDetail} />

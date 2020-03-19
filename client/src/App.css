@@ -7,6 +7,50 @@ a {
   text-decoration: none;
 }
 
+.home-wrapper {
+  height: 100vh;
+  background-image: url('https://static.zara.net/photos///2020/V/0/2/p/4312/226/300/72/w/1923/4312226300_2_4_1.jpg?ts=1583330341171');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.home-btn {
+  width: 150px;
+  border: 3px solid black;
+  font-weight: 800;
+  width: 100%;
+}
+
+.home-left-btn {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 1%;
+  cursor: pointer;
+}
+
+.arrow-svg {
+  margin: 10px;
+}
+
+.home-right-btn {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 1%;
+}
+
+.home-text-component {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .page-wrapper {
   padding: 7% 2%;
 }
@@ -35,6 +79,21 @@ a {
   padding: 25% 10%;
   width: 315px;
   box-shadow: none;
+}
+
+.category-header-wrapper {
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.google-login-btn {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.google-login-btn div {
+  margin-right: 0 !important;
+  background: transparent !important;
 }
 
 .product-name {
