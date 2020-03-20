@@ -40,6 +40,7 @@ export type User = {
   username: string
   email: string
   isAdmin: boolean
+  isBanned: boolean
   id: string
   iat: number
   exp: number

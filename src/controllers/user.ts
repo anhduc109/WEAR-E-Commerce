@@ -147,13 +147,14 @@ export const authenticate = async (
   next: NextFunction
 ) => {
   try {
-    const { email, isAdmin, id, username } = req.user as any
+    const { email, isAdmin, id, username, isBanned } = req.user as any
     const token = await jwt.sign(
       {
         username,
         email,
         isAdmin,
         id,
+        isBanned,
       },
       JWT_SECRET,
       {
