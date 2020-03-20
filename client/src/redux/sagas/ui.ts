@@ -1,14 +1,9 @@
 import { takeLatest } from 'redux-saga/effects'
 
-import {
-  TOGGLE_DIALOG,
-  ToggleDialogAction,
-} from '../../types'
+import { TOGGLE_BAN_ALERT, ToggleBanAlertAction } from '../../types'
 
-function* doSomethingWhenDialogOpen(action: ToggleDialogAction) {
+function* doSomethingWhenDialogOpen(action: ToggleBanAlertAction) {
   yield console.log(action)
 }
 
-export default [
-  takeLatest(TOGGLE_DIALOG, doSomethingWhenDialogOpen),
-]
+export default [takeLatest(TOGGLE_BAN_ALERT, doSomethingWhenDialogOpen)]

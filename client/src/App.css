@@ -180,3 +180,7 @@ a {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.red-text {
+  color: red;
+}

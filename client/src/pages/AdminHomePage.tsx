@@ -24,11 +24,13 @@ const AdminHomePage = () => {
       </Typography>
       <br />
       <List className={classes.adminList}>
-        <ListItem button>
-          <Typography variant="h6" align="center">
-            Ban some users
-          </Typography>
-        </ListItem>
+        <Link to="/admin/users">
+          <ListItem button>
+            <Typography variant="h6" align="center">
+              Ban some users
+            </Typography>
+          </ListItem>
+        </Link>
         <Divider />
         <Link to="/admin/products">
           <ListItem button>

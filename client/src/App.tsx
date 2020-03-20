@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken'
 
 import './App.css'
 import NavBar from './components/NavBar'
+import BanAlertDialog from './components/BanAlertDialog'
 import { addJWTToken, loadUser, fetchCart } from './redux/actions'
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
     <>
       <NavBar />
       <Routes />
+      <BanAlertDialog />
     </>
   )
 }

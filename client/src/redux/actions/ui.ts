@@ -1,14 +1,10 @@
-import {
-  TOGGLE_DIALOG,
-  ToggleDialogAction,
-  DialogType,
-} from '../../types'
+import { TOGGLE_BAN_ALERT, ToggleBanAlertAction } from '../../types'
 
-export function toggleDialog(dialog: DialogType): ToggleDialogAction {
+export function toggleBanAlert(isAlertOpen: boolean): ToggleBanAlertAction {
   return {
-    type: TOGGLE_DIALOG,
+    type: TOGGLE_BAN_ALERT,
     payload: {
-      dialog,
-    }
+      isAlertOpen,
+    },
   }
 }

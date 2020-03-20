@@ -8,7 +8,7 @@ import {
   LogOutAction,
   LOG_OUT,
 } from '../../types'
-import { isAdmin } from '../actions'
+import { isAdmin, toggleBanAlert, logOut } from '../actions'
 
 function* saveTokenToLocalStorage(action: ADDJWTTokenAction) {
   const state: AppState = yield select()
@@ -21,6 +21,19 @@ function* saveTokenToLocalStorage(action: ADDJWTTokenAction) {
   yield localStorage.setItem('token', JSON.stringify(token))
 }
 
+function* checkIsBanned(action: ADDJWTTokenAction) {
+  const state: AppState = yield select()
+
+  const token: any = state.user.token
+
+  const decoded: any = jwt.decode(token)
+
+  if (decoded.isBanned === true) {
+    yield put(logOut())
+    yield put(toggleBanAlert(true))
+  }
+}
+
 function* removeTokenFromLocalStorage(action: LogOutAction) {
   yield localStorage.removeItem('token')
   yield put(isAdmin(false))
@@ -28,5 +41,6 @@ function* removeTokenFromLocalStorage(action: LogOutAction) {
 
 export default [
   takeLatest(ADD_JWT_TOKEN, saveTokenToLocalStorage),
+  takeLatest(ADD_JWT_TOKEN, checkIsBanned),
   takeLatest(LOG_OUT, removeTokenFromLocalStorage),
 ]

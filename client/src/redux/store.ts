@@ -18,7 +18,7 @@ const initState: AppState = {
     products: [],
   },
   ui: {
-    dialogOpen: {},
+    isAlertOpen: false,
   },
 }
 

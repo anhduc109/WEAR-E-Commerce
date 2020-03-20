@@ -17,6 +17,9 @@ export const CHECK_ADMIN = 'CHECK_ADMIN'
 
 export const GET_CART = 'GET_CART'
 
+// UI
+export const TOGGLE_BAN_ALERT = 'TOGGLE_BAN_ALERT'
+
 // Enum
 export enum DialogType {
   SignIn = 'signIn',
@@ -69,10 +72,10 @@ export type RemoveProductAction = {
   }
 }
 
-export type ToggleDialogAction = {
-  type: typeof TOGGLE_DIALOG
+export type ToggleBanAlertAction = {
+  type: typeof TOGGLE_BAN_ALERT
   payload: {
-    dialog: DialogType
+    isAlertOpen: boolean
   }
 }
 
@@ -124,7 +127,7 @@ export type LogOutAction = {
   }
 }
 
-export type UiActions = ToggleDialogAction
+export type UiActions = ToggleBanAlertAction
 
 // Use this union in reducer
 export type ProductActions =
@@ -151,11 +154,8 @@ export type UserState = {
   cart: CartProduct[]
 }
 
-// Using dynamic keys from an enum
 export type UiState = {
-  dialogOpen: {
-    [key in DialogType]?: boolean
-  }
+  isAlertOpen: boolean
 }
 
 export type AppState = {

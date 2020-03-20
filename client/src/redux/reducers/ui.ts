@@ -1,11 +1,7 @@
-import {
-  TOGGLE_DIALOG,
-  UiState,
-  UiActions,
-} from '../../types'
+import { TOGGLE_BAN_ALERT, UiState, UiActions } from '../../types'
 
 const defaultState: UiState = {
-  dialogOpen: {},
+  isAlertOpen: false,
 }
 
 export default function ui(
@@ -13,13 +9,10 @@ export default function ui(
   action: UiActions
 ): UiState {
   switch (action.type) {
-    case TOGGLE_DIALOG: {
+    case TOGGLE_BAN_ALERT: {
       return {
         ...state,
-        dialogOpen: {
-          ...state.dialogOpen,
-          [action.payload.dialog]: !(state.dialogOpen[action.payload.dialog])
-        },
+        isAlertOpen: action.payload.isAlertOpen,
       }
     }
 
@@ -27,4 +20,3 @@ export default function ui(
       return state
   }
 }
-

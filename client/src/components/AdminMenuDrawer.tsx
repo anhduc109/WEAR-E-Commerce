@@ -45,9 +45,11 @@ const MenuDrawer = () => {
           <ListItemText primary="Manage products" />
         </ListItem>
         <Divider />
-        <ListItem button>
-          <ListItemText primary="Manage users" />
-        </ListItem>
+        <Link to="/admin/users">
+          <ListItem button>
+            <ListItemText primary="Manage users" />
+          </ListItem>
+        </Link>
         <Divider />
       </List>
     </div>
