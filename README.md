@@ -33,9 +33,9 @@
 
 # Images from Admin Dashboard
 
-![Admin Create Product](./report-img/admin-create)
+![Admin Create Product](./report-img/admin-create.png)
 
-![Admin Ban User](./report-img/admin-ban)
+![Admin Ban User](./report-img/admin-ban.png)
 
 ## License
 
