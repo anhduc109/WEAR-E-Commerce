@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken'
 import {
   ADD_JWT_TOKEN,
   ADDJWTTokenAction,
+  LOAD_USER_SUCCESS,
   AppState,
   LogOutAction,
   LOG_OUT,
@@ -21,7 +22,7 @@ function* saveTokenToLocalStorage(action: ADDJWTTokenAction) {
   yield localStorage.setItem('token', JSON.stringify(token))
 }
 
-function* checkIsBanned(action: ADDJWTTokenAction) {
+function* checkIsBanned(action: any) {
   const state: AppState = yield select()
 
   const token: any = state.user.token
@@ -41,6 +42,6 @@ function* removeTokenFromLocalStorage(action: LogOutAction) {
 
 export default [
   takeLatest(ADD_JWT_TOKEN, saveTokenToLocalStorage),
-  takeLatest(ADD_JWT_TOKEN, checkIsBanned),
+  takeLatest([ADD_JWT_TOKEN, LOAD_USER_SUCCESS], checkIsBanned),
   takeLatest(LOG_OUT, removeTokenFromLocalStorage),
 ]
