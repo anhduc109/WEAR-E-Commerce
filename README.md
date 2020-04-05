@@ -5,7 +5,7 @@
 
 # Features
 
-- Login with Google
+- User Login System with Google
 - Protected Admin/User routes in both front-end and back-end
 - Remain logged-in while refresh with JWT token and Local Storage
 - User can add items to Cart
