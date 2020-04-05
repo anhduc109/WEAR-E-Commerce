@@ -1,6 +1,6 @@
 # WEAR E-Commerce Clothing Site
 
-- A well-designed MERN(MongoDB, Express.js, React, Node.js) Stack Application E-Commerce website of Clothes inspired by Zara.
+- A well-designed MERN(MongoDB, Express.js, React, Node.js) Stack Application E-Commerce website in clothing fashion inspired by Zara.
 - Demo link: https://wear.netlify.com/
 
 # Features
