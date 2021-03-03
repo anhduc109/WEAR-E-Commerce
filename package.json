@@ -55,7 +55,7 @@
     "passport-google-id-token": "^0.4.6",
     "passport-local": "^1.0.0",
     "path-to-regexp": "^6.1.0",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "winston": "^3.2.1"
